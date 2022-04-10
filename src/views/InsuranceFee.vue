@@ -256,7 +256,17 @@
           </v-row>
           <v-divider v-if="idx !== billData.length - 1" />
         </div>
-        <v-btn class="payment mt-4" @click="onPay"> Thanh toán </v-btn>
+        <span class="text-importance" v-if="messageErr">
+          {{ messageErr }}
+        </span>
+        <v-btn
+          :loading="loading === 1"
+          color="primary"
+          class="payment mt-4"
+          @click="onPay"
+        >
+          Thanh toán
+        </v-btn>
       </v-card-text>
     </v-card>
   </v-col>
@@ -264,9 +274,38 @@
 
 <script>
 import MenuInsuranceSelect from "../components/MenuInsuranceSelect";
+import axios from "axios";
 export default {
   name: "InsuranceFee",
   components: { MenuInsuranceSelect },
+  created() {
+    this.messageErr = null;
+    let carData = localStorage.getItem("CarData");
+    if (!carData) {
+      this.$router.push("/car-information");
+    } else {
+      carData = JSON.parse(carData);
+    }
+    let userData = localStorage.getItem("UserData");
+    if (!userData) {
+      this.$router.push("/user-information");
+    } else {
+      userData = JSON.parse(userData);
+    }
+    this.dataSubmit = {
+      name: userData.name,
+      phone: userData.phone,
+      email: userData.email,
+      car_brand: carData.brand,
+      car_model: carData.model,
+      car_year: carData.year,
+      province: carData.province,
+      date_registry: carData.dateRegistry,
+      date_insurance_atv: carData.insuranceActiveDate,
+      is_ecom: carData.isEcomReg,
+      date_submit: new Date().toLocaleDateString(),
+    };
+  },
   data() {
     return {
       billData: [
@@ -352,6 +391,9 @@ export default {
         },
       ],
       selectFee: 0,
+      dataSubmit: {},
+      messageErr: null,
+      loading: 0,
     };
   },
   methods: {
@@ -359,10 +401,32 @@ export default {
       console.log("handle seleceted feee", index);
       this.selectFee = index;
     },
-    onPay() {
-      localStorage.removeItem("UserData");
-      localStorage.removeItem("CarData");
-      this.$router.push(`/payment-success`).catch();
+    async onPay() {
+      this.loading = 1;
+      this.messageErr = null;
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: process.env.VUE_APP_TOKEN,
+      };
+      this.dataSubmit.fee_package = this.selectFee;
+      axios
+        .post(
+          `${process.env.VUE_APP_API_BASE_URL}/api/car-insurance/new-insurance`,
+          this.dataSubmit,
+          {
+            headers: headers,
+          }
+        )
+        .then(() => {
+          localStorage.removeItem("UserData");
+          localStorage.removeItem("CarData");
+          this.loading = 0;
+          this.$router.push(`/payment-success`).catch();
+        })
+        .catch(() => {
+          this.loading = 0;
+          this.messageErr = "Submit data error";
+        });
     },
   },
 };
@@ -389,9 +453,7 @@ export default {
 .payment {
   width: 100% !important;
   height: 48.62px !important;
-  background: #7f47fa !important;
   border-radius: 25px !important;
   text-transform: none !important;
-  color: white;
 }
 </style>
