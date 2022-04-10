@@ -1,4 +1,4 @@
-# demo_live_stream
+# Insurance UI
 
 ## Project setup
 ```
