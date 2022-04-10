@@ -1,0 +1,73 @@
+
+.text-title-small {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+  text-align: center;
+  color: black;
+
+  :active {
+    color: white;
+  }
+}
+
+.my-title {
+  font-size: 22px !important;
+  font-weight: bold;
+}
+
+.info-menu {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.sub-title {
+  font-size: 20px !important;
+  font-weight: bold;
+}
+
+.text-info {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.text-importance {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #F52D6A;
+
+}
+
+.menu-container {
+  padding: 15px;
+  margin: auto auto;
+  background: #ffffff;
+  border-radius: 5px;
+}
+
+.work-space {
+  padding: 22px 20px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.primary-text-section {
+  color: #7f47fa;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.input-container {
+  padding: 21px;
+  background-color: white;
+  border-radius: 10px;
+}
