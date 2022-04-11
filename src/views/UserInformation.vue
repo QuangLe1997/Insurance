@@ -102,15 +102,20 @@ export default {
       email: "",
       nameRules: [
         (v) => !!v || "Tên không được trống",
-        (v) => v.length <= 50 || "Tên không được dài quá 50 kí tự",
+        (v) => !!v || "Tên không được trống",
+        (v) => v.length <= 50 || "Tên không được dài hơn 50 kí tự",
+        (v) => v.length >= 2 || "Tên không được ngắn hơn 2 kí tự",
       ],
       phoneRules: [
         (v) => !!v || "SĐT không được trống",
-        (v) => v.length <= 11 || "Số điện thoại không hợp lệ",
+        (v) => (v.length <= 11 && v.length >= 10) || "SĐT không hợp lệ",
       ],
       emailRules: [
         (v) => !!v || "Email không được trống",
-        (v) => /.+@.+/.test(v) || "Email không hợp lệ",
+        (v) =>
+          !v ||
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "Email không hợp lệ",
       ],
     };
   },
