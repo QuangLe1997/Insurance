@@ -121,7 +121,7 @@
         </menu-insurance>
       </v-col>
       <v-col cols="6">
-        <menu-insurance url="user-information" tex-menu="TNDSBB">
+        <menu-insurance url="car-information" tex-menu="TNDSBB">
           <svg
             slot="img-icon"
             width="93"
@@ -251,7 +251,7 @@
         </menu-insurance>
       </v-col>
       <v-col cols="6">
-        <menu-insurance url="user-information" tex-menu="Insurance Claim">
+        <menu-insurance url="car-information" tex-menu="Insurance Claim">
           <svg
             slot="img-icon"
             width="96"
@@ -366,7 +366,7 @@
         </menu-insurance>
       </v-col>
       <v-col cols="6">
-        <menu-insurance url="user-information" tex-menu="Policy Quatation">
+        <menu-insurance url="car-information" tex-menu="Policy Quatation">
           <svg
             slot="img-icon"
             width="96"
