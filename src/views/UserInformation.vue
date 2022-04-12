@@ -81,7 +81,7 @@
               :disabled="!formValid"
               color="primary"
               rounded
-              @click="nextPage('car-information')"
+              @click="nextPage('insurance-fee')"
               >Tiếp tục
             </v-btn>
           </v-col>

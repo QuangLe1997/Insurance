@@ -2,7 +2,7 @@
   <v-col sm="12" md="5" lg="4" xl="3" class="work-space">
     <v-row class="mt-6 d-flex justify-space-between align-center">
       <v-col cols="6">
-        <menu-insurance url="user-information" tex-menu="Vật Chất Xe">
+        <menu-insurance url="car-information" tex-menu="Vật Chất Xe">
           <svg
             slot="img-icon"
             width="95"
