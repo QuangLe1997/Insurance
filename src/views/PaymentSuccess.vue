@@ -34,13 +34,23 @@
           </svg>
         </v-col>
         <v-col cols="12" class="pb-0 text-center">
-          <p class="sub-title">Payment Successful</p>
-          <p class="text-importance">Policy No: CB2015-2345</p>
-          <span class="text-info">Thank you for choosing our</span><br />
-          <span class="text-info">service and trusted to help you</span><br />
-          <p class="text-info">with Deposit</p>
+          <p class="sub-title" style="color: #7f47fa">Chúc mừng Quý khách</p>
+          <span class="text-importance-2-black">Đã đăng ký thành công gói</span
+          ><br />
+          <span class="text-importance-2-black"
+            >ưu đãi
+            <span class="text-importance-2-pink"
+              >lên đến 30% và quà tặng</span
+            ></span
+          ><br />
+          <p class="text-importance-2-pink">lên đến 3 triệu</p>
+          <span class="text-importance-2-black"
+            >Chúng tôi sẽ gọi ngay cho bạn</span
+          >
+          <br />
+          <span class="text-importance-2-black">để tư vấn ưu đãi trên</span>
         </v-col>
-        <v-col cols="12">
+        <v-col cols="12" class="mt-12">
           <v-btn
             width="100%"
             color="error"
