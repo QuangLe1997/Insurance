@@ -3,10 +3,10 @@
     <v-container fluid class="work-space">
       <v-form ref="formUser" v-model="formValid">
         <v-row class="input-container px-2 py-2">
-          <v-col cols="12" class="mb-4">
+          <v-col cols="12">
             <svg
               width="100%"
-              height="100%"
+              height="90%"
               viewBox="0 0 335 239"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +62,7 @@
               placeholder="Số điện thoại"
             />
           </v-col>
-          <v-col cols="12" class="pb-4">
+          <v-col cols="12" class="pb-2">
             <v-text-field
               hide-details="auto"
               background-color="#F3F3F3"
@@ -74,7 +74,7 @@
               placeholder="Email"
             />
           </v-col>
-          <v-col cols="12" class="pb-4" style="text-align: center">
+          <v-col cols="12" class="pb-2" style="text-align: center">
             <span style="text-align: justify">
               Bằng việc lựa chọn “Tiếp tục” bạn xác nhận rằng đồng ý để Bigbang
               gọi lại tư vấn các gói Bảo hiểm xe cơ giới.
