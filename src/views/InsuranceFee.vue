@@ -266,7 +266,7 @@
         </v-btn>
       </v-card-text>
     </v-card>
-    <v-dialog v-model="showNoti">
+    <v-dialog v-model="showNoti" max-width="400px">
       <v-card>
         <v-card-title class="text-h6 primary white--text justify-center">
           Thông báo
