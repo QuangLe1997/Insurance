@@ -74,6 +74,12 @@
               placeholder="Email"
             />
           </v-col>
+          <v-col cols="12" class="pb-4" style="text-align: center">
+            <span style="text-align: justify">
+              Bằng việc lựa chọn “Tiếp tục” bạn xác nhận rằng đồng ý để Bigbang
+              gọi lại tư vấn các gói Bảo hiểm xe cơ giới.
+            </span>
+          </v-col>
           <v-col cols="12">
             <v-btn
               width="100%"
@@ -129,9 +135,6 @@ export default {
       carData = JSON.parse(carData);
     }
     this.dataSubmit = {
-      name: this.name,
-      phone: this.phoneNumber,
-      email: this.email,
       car_brand: carData.brand,
       car_model: carData.model,
       car_year: carData.year,
@@ -147,6 +150,9 @@ export default {
       this.$refs.formUser.validate();
       if (this.formValid) {
         this.loading = 1;
+        this.dataSubmit.name = this.name;
+        this.dataSubmit.phone = this.phoneNumber;
+        this.dataSubmit.email = this.email;
         const headers = {
           "Content-Type": "application/json",
           Authorization: process.env.VUE_APP_TOKEN,
@@ -184,9 +190,11 @@ export default {
   background: #7f47fa !important;
   border-radius: 25px !important;
 }
+
 .phone-number input[type="number"] {
   -moz-appearance: textfield;
 }
+
 .phone-number input::-webkit-outer-spin-button,
 .phone-number input::-webkit-inner-spin-button {
   -webkit-appearance: none;
