@@ -67,7 +67,6 @@
               hide-details="auto"
               background-color="#F3F3F3"
               rounded
-              required
               :rules="emailRules"
               v-model="email"
               dense
@@ -78,6 +77,7 @@
           <v-col cols="12">
             <v-btn
               width="100%"
+              :loading="loading === 1"
               :disabled="!formValid"
               color="primary"
               rounded
@@ -92,6 +92,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "UserInformation",
   data() {
@@ -111,36 +113,60 @@ export default {
         (v) => (v.length <= 11 && v.length >= 10) || "SĐT không hợp lệ",
       ],
       emailRules: [
-        (v) => !!v || "Email không được trống",
         (v) =>
           !v ||
           /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
           "Email không hợp lệ",
       ],
+      loading: 0,
     };
   },
   created() {
-    let userData = localStorage.getItem("UserData");
-    if (userData) {
-      userData = JSON.parse(userData);
-      this.name = userData.name;
-      this.email = userData.email;
-      this.phoneNumber = userData.phone;
+    let carData = localStorage.getItem("CarData");
+    if (!carData) {
+      this.$router.push("/car-information");
+    } else {
+      carData = JSON.parse(carData);
     }
+    this.dataSubmit = {
+      name: this.name,
+      phone: this.phoneNumber,
+      email: this.email,
+      car_brand: carData.brand,
+      car_model: carData.model,
+      car_year: carData.year,
+      province: carData.province,
+      date_registry: carData.dateRegistry,
+      date_insurance_atv: carData.insuranceActiveDate,
+      is_ecom: carData.isEcomReg,
+      date_submit: new Date().toLocaleDateString(),
+    };
   },
   methods: {
-    nextPage(url) {
+    async nextPage(url) {
       this.$refs.formUser.validate();
       if (this.formValid) {
-        localStorage.setItem(
-          "UserData",
-          JSON.stringify({
-            name: this.name,
-            phone: this.phoneNumber,
-            email: this.email,
+        this.loading = 1;
+        const headers = {
+          "Content-Type": "application/json",
+          Authorization: process.env.VUE_APP_TOKEN,
+        };
+        axios
+          .post(
+            `${process.env.VUE_APP_API_BASE_URL}/api/car-insurance/new-insurance`,
+            this.dataSubmit,
+            {
+              headers: headers,
+            }
+          )
+          .then(() => {
+            localStorage.removeItem("CarData");
+            this.loading = 0;
+            this.$router.push(`/${url}`).catch();
           })
-        );
-        this.$router.push(`/${url}`).catch();
+          .catch(() => {
+            this.loading = 0;
+          });
       }
     },
   },

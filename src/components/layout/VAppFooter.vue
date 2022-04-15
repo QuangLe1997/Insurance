@@ -3,7 +3,7 @@
     <v-card class="flex" flat tile>
       <v-card-title>
         <v-row class="px-2 d-flex align-center justify-space-between">
-          <v-btn icon fab>
+          <v-btn icon fab @click="onHome">
             <svg
               width="33"
               height="44"
@@ -98,6 +98,11 @@
 <script>
 export default {
   name: "VAppFooter",
+  methods: {
+    onHome() {
+      this.$router.push("/car-insurance");
+    },
+  },
 };
 </script>
 
