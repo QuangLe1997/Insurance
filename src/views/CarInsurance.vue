@@ -466,7 +466,6 @@
     </v-row>
     <v-row class="d-flex align-center justify-space-between px-6">
       <span class="my-title">Ưu đãi</span>
-      <span class="info-menu">Xem thêm +</span>
     </v-row>
     <v-row
       class="container-img-family d-flex align-center justify-space-around"
