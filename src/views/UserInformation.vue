@@ -142,7 +142,7 @@ export default {
       date_registry: carData.dateRegistry,
       date_insurance_atv: carData.insuranceActiveDate,
       is_ecom: carData.isEcomReg,
-      date_submit: new Date().toLocaleDateString(),
+      date_submit: new Date().toLocaleString(),
     };
   },
   methods: {
